@@ -1,0 +1,23 @@
+name: Code Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          git clone https://github.com/cyberboysumanjay/Carbon-API
+          cd Carbon-API
+          pip3 install -r requirements.txt
+
+      - name: Run a multi-line script
+        working-directory: Carbon-API
+        run: |
+          python3 app.py
+          wait 20
