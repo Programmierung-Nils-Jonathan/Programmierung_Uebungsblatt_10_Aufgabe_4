@@ -15,3 +15,7 @@ jobs:
         with:
           code: 'console.log("Test");'
           
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Code
+          path: code.png
