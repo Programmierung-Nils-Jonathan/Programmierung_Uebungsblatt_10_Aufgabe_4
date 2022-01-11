@@ -4,19 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  generate_image:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: |
-          git clone https://github.com/cyberboysumanjay/Carbon-API
-          cd Carbon-API
-          pip3 install -r requirements.txt
-
-      - name: Generate Image
-        working-directory: Carbon-API
-        run: python3 app.py & sleep 20 && curl "localhost:5000/?code=Made+with+Love+in+India+by+Sumanjay&theme=darcula&backgroundColor=rgba(144, 19, 254, 100)"
+      
+      - id: generate_image
+        uses: JonathanTreffler/Carbon-Action@master
+        with:
+          code: 'console.log("Test");'
           
