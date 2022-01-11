@@ -14,7 +14,7 @@ jobs:
         run: |
           for i in *.hs
           do
-            echo "// $i" > content.txt
+            echo "-- $i" > content.txt
             echo "" >> content.txt
             cat $i >> content.txt
             echo "" >> content.txt
@@ -26,6 +26,9 @@ jobs:
         uses: JonathanTreffler/Carbon-Action@master
         with:
           code: $(cat content.txt)
+          windowControls: false
+          language: Haskell
+          lineNumbers: true
           
       - uses: actions/upload-artifact@v2
         with:
