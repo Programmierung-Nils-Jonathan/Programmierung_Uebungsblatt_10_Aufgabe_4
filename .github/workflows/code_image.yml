@@ -10,10 +10,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Generate code image content
+        run: |
+          for i in *.java *.hs
+          do
+            echo "// $i" >> content.txt
+            echo "" >> content.txt
+            cat $i >> content.txt
+            echo "" >> content.txt
+          done
+          
+          cat content.txt
+      
       - id: generate_image
         uses: JonathanTreffler/Carbon-Action@master
         with:
-          code: 'console.log("Test");'
+          code: $(cat content.txt)
           
       - uses: actions/upload-artifact@v2
         with:
