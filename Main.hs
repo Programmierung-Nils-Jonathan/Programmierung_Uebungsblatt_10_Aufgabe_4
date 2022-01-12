@@ -22,7 +22,7 @@ decodeInt :: BinTree (Int -> Bool) b -> Int -> b
 decodeInt (Node x y z) f    | y(f)==True  =decodeInt z f
                             | otherwise    =decodeInt x f
 decodeInt (Leaf d) f=d
-
+--fehlt noch was der Empty Fall
 
 
 
