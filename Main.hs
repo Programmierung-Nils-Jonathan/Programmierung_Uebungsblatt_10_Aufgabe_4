@@ -41,6 +41,6 @@ rest [] = error "Leere Liste!"
 rest (x:xs) = xs
  
 main :: IO()
-main = print (decode example [1,2,3,10,15,16])
+main = print (decode example [1,2,3,10])
 
 
