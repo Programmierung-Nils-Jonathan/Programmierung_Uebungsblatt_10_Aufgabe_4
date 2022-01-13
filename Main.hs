@@ -1,5 +1,8 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 import Text.Show.Functions
+import System.Console.Haskeline (getInputChar)
+import Text.Read (Lexeme(Char))
+import Distribution.Simple.Utils (xargs)
 data BinTree a b =
             Empty
             |Leaf b
@@ -20,13 +23,24 @@ countInnerNodes Empty = 0
 
 decodeInt :: BinTree (Int -> Bool) b -> Int -> b
 decodeInt (Node x y z) f    | y(f)==True  =decodeInt z f
-                            | otherwise    =decodeInt x f
+                            | otherwise   =decodeInt x f
 decodeInt (Leaf d) f=d
+--fehlt noch was der Empty Fall
+
+decode :: BinTree (Int -> Bool) b -> [Int] -> [b] 
+decode a (x:xs) = [decodeInt a x] ++ decode a xs
+decode a []=[]
 
 
 
+erstesElement :: [a] -> a
+erstesElement (x:xs) = x
 
+rest :: [a] -> [a]
+rest [] = error "Leere Liste!"
+rest (x:xs) = xs
+ 
 main :: IO()
-main = print (decodeInt example 10)
+main = print (decode example [1,2,3,10,15,16])
 
 
