@@ -1,8 +1,6 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 import Text.Show.Functions
-import System.Console.Haskeline (getInputChar)
-import Text.Read (Lexeme(Char))
-import Distribution.Simple.Utils (xargs)
+
 data BinTree a b =
             Empty
             |Leaf b
@@ -30,6 +28,7 @@ decodeInt (Leaf d) f=d
 decode :: BinTree (Int -> Bool) b -> [Int] -> [b] 
 decode a (x:xs) = [decodeInt a x] ++ decode a xs
 decode a []=[]
+
 
 
 
