@@ -25,7 +25,7 @@ jobs:
       - id: generate_image
         uses: JonathanTreffler/Carbon-Action@master
         with:
-          code: $(cat content.txt | jq -aRs .)
+          code: $(cat content.txt)
           windowControls: false
           language: Haskell
           lineNumbers: true
